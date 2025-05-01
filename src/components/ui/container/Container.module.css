@@ -1,0 +1,15 @@
+.container {
+  background-color: #212329;
+  border: #3a3c45 0.1rem solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: fit-content;
+  gap: 0.5rem;
+}
+
+.containerItem {
+  padding: 0.5rem;
+}

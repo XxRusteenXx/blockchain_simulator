@@ -1,0 +1,30 @@
+.walletItem {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.walletName {
+  width: 75%;
+  cursor: pointer;
+}
+
+.walletName:hover {
+  color: darkgrey;
+}
+
+.checkbox {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: content-box;
+}
+
+.showBlockchainButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

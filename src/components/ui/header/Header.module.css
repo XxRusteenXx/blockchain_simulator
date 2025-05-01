@@ -1,0 +1,12 @@
+.header {
+  background-color: #212329;
+  /* position: sticky; */
+  /* top: 0; */
+  /* left: 0; */
+  border-bottom: #3a3c45 0.1rem solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2rem;
+  font-size: x-large;
+}
