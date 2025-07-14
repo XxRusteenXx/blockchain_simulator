@@ -6,7 +6,7 @@ export class Block {
   private static readonly MAX_REWARD = 100;
   private id: number
   private prevHash: number
-  private curHash: number | null
+  private curHash: number
   private sender: string
   private receiver: string
   private amount: number
@@ -30,7 +30,7 @@ export class Block {
     this.fee = fee
     this.key = key
     this.id = -1;
-    this.curHash = null
+    this.curHash = -1
     this.reward = null
     this.miner = null
     // I think the reward should be calculated after being mined
@@ -52,6 +52,7 @@ export class Block {
   public setKey = (key: string | null) => this.key = key;
   public setMiner = (miner: string) => this.miner = miner;
   public setReward = (reward: number) => this.reward = reward;
+  public setPrevHash = (prevHash: number) => this.prevHash = prevHash;
   public setCurHash = (curHash: number) => this.curHash = curHash;
 
   public static calculateCurHash = (

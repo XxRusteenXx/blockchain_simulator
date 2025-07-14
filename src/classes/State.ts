@@ -74,11 +74,16 @@ export class State{
     return verified
   }
 
+  public addBlockToBeMined = (sender: string, receiver: string, amount: number) => {
+    const block = new Block(0, sender, receiver, amount, 0, null);
+    this.blocksToBeMined.push(block);
+  }
+
   public removeBlockToBeMined = (block: Block) => {
     this.blocksToBeMined = this.blocksToBeMined.filter(b => 
-      b.getAmount() !== block.getAmount() &&
-      b.getCurHash() !== block.getCurHash() &&
-      b.getFee() !== block.getFee() &&
+      b.getAmount() !== block.getAmount() ||
+      b.getCurHash() !== block.getCurHash() ||
+      b.getFee() !== block.getFee() ||
       b.getMiner() !== block.getMiner()
     )
   }

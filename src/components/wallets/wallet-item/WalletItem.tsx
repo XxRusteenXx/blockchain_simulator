@@ -44,6 +44,10 @@ const WalletItem: FC<WalletItemProps> = ({
     rerender();
   }
 
+  const hideBlockchain = () => {
+    setShownBlockchain(-1);
+  }
+
   return (
     <>
       <div className={styles.walletItem}>
@@ -59,7 +63,7 @@ const WalletItem: FC<WalletItemProps> = ({
         </div>
       </div>
       <Modal isActive={isExpanded} setVisibility={setIsExpanded}>
-        <WalletDescription wallet={wallet}/>
+        <WalletDescription wallet={wallet} isBlockchainShown={isBlockchainShown} hideShownBlockchain={hideBlockchain}/>
       </Modal>
     </>
   )

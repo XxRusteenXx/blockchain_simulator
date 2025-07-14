@@ -45,7 +45,7 @@ export class Wallet {
 
   public addBlockToBlockchain = (block: Block) => {
     block.setId(this.blockchain.length);
-    this.blockchain.push(block);
+    this.blockchain = [block, ...this.blockchain];
   }
 
   public receiveBlockchain = (blockchain: Block[]) => this.receivedBlockchains.push(blockchain);
@@ -80,7 +80,7 @@ export class Wallet {
     this.blockchain = differentBlockchains[random];
     this.receivedBlockchains = [];
   }
-  
+
   public calculateCurrentBalance = () => {
     let balance = 0;
     this.blockchain.forEach(b => {

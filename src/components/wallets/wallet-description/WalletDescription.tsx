@@ -8,13 +8,17 @@ import { StateContext } from "../../../context/Context";
 
 interface WalletDescriptionProps {
   wallet: Wallet
+  isBlockchainShown: boolean
+  hideShownBlockchain: () => any
 }
 
-const WalletDescription: FC<WalletDescriptionProps> = ({wallet}) => {
+const WalletDescription: FC<WalletDescriptionProps> = ({wallet, isBlockchainShown, hideShownBlockchain}) => {
   const {state, rerender} = useContext(StateContext);
 
   const removeWallet = () => {
     state.removeWallet(wallet.getName());
+    if(isBlockchainShown)
+      hideShownBlockchain();
     rerender();
   }
 

@@ -37,7 +37,15 @@ export class Loop {
         let generatedKey = createRandomString(KEY_LENGTH);
         assignedBlock.setKey(generatedKey);
         if(Block.verifyWork(assignedBlock)) {
+          if(w[i].getBlockchain().length !== 0) {
+            assignedBlock.setPrevHash(
+              w[i].getBlockchain()[w[i].getBlockchain().length-1].getCurHash()
+            );
+          } else {
+            assignedBlock.setPrevHash(0);
+          }
           w[i].addBlockToBlockchain(assignedBlock);
+          
           assignedBlock.setMiner(w[i].getName());
           assignedBlock.setReward(Block.calculateReward(assignedBlock.getId()));
           removeTransaction(assignedBlock);

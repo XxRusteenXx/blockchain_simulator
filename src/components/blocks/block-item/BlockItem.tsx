@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import styles from "./BlockItem.module.css";
 import { Block } from "../../../classes/Block";
+import styles from "./BlockItem.module.css";
 
 interface BlockItemProps {
   block: Block
