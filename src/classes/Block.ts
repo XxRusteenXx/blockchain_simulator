@@ -1,3 +1,4 @@
+import { VALID_KEY_RANGE } from "../const/Const";
 import { hash } from "../utils/HashFunction";
 
 export class Block {
@@ -64,7 +65,7 @@ export class Block {
   public static verifyWork = (block: Block) => {
     const result = Block.calculateCurHash(block, block.getKey());
     if (result === -1) return false;
-    if (result <= 250) {
+    if (result <= VALID_KEY_RANGE) {
       block.setCurHash(result);
       return true
     };

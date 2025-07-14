@@ -1,4 +1,5 @@
 import { Block } from "../classes/Block"
+import { HASH_VALUE_RANGE } from "../const/Const";
 
 export const hash = (block: Block, key: string | null) => {
   if (key === null) return -1;
@@ -10,7 +11,7 @@ export const hash = (block: Block, key: string | null) => {
   h += convertStrToNumber(block.getReceiver());
   h += convertStrToNumber(key);
 
-  const hash = h % 256;
+  const hash = h % HASH_VALUE_RANGE;
   return hash;
 }
 
