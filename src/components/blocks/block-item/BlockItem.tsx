@@ -18,6 +18,12 @@ const BlockItem: FC<BlockItemProps> = ({block, isMined}) => {
               ID: {block.getId()}
             </div>
             <div>
+              Miner: {block.getMiner()}
+            </div>
+            <div>
+              Key: {block.getKey()}
+            </div>
+            <div>
               Previous Hash: {block.getPrevHash()}
             </div>
             <div>

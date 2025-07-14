@@ -3,10 +3,10 @@ import { State } from "../classes/State";
 
 interface IContext {
   state: State
-  setState: (arg: any) => any
+  rerender: () => void
 }
 
 export const StateContext = createContext<IContext>({
   state: new State(),
-  setState: () => null, //placeholder function
+  rerender: () => {}, //placeholder function
 });

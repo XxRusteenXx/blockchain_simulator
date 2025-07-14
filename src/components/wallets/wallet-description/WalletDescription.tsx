@@ -11,10 +11,11 @@ interface WalletDescriptionProps {
 }
 
 const WalletDescription: FC<WalletDescriptionProps> = ({wallet}) => {
-  const {state, setState} = useContext(StateContext);
+  const {state, rerender} = useContext(StateContext);
 
   const removeWallet = () => {
-    setState(state.removeWallet(wallet.getName()));
+    state.removeWallet(wallet.getName());
+    rerender();
   }
 
   return (
@@ -29,7 +30,7 @@ const WalletDescription: FC<WalletDescriptionProps> = ({wallet}) => {
         </div>
         <hr className={styles.horizontalLine}/>
         <div>
-          Balance: {wallet.getBalance()}
+          Balance: {wallet.calculateCurrentBalance()}
         </div>
         <hr className={styles.horizontalLine}/>
         <Button text="Delete" onClick={removeWallet}/>

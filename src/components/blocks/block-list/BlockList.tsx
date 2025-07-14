@@ -15,14 +15,14 @@ const BlockList: FC<BlockListProps> = ({blocklist, isMined}) => {
   return (
     <div className={styles.blockList}>
       {blocklist.map((b, i) =>
-        <>
+        <div key={i}>
           <Container>
             <BlockItem block={b} isMined={isMined}/>
           </Container>
           {
             isMined && i < blocklist.length - 1 && <FaLongArrowAltUp/>
           }
-        </>
+        </div>
       )}
     </div>
   )

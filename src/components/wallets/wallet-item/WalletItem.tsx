@@ -21,11 +21,12 @@ const WalletItem: FC<WalletItemProps> = ({
   isBlockchainShown,
   setShownBlockchain
 }) => {
-  const {state, setState} = useContext(StateContext);
+  const {state, rerender} = useContext(StateContext);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const triggerCheckbox = () => {
-    setState(state.triggerMiningByName(wallet.getName(), !wallet.getIsMining()));
+    state.triggerMiningByName(wallet.getName(), !wallet.getIsMining());
+    rerender();
   }
 
   const expandWallet = () => {
@@ -33,13 +34,14 @@ const WalletItem: FC<WalletItemProps> = ({
   }
 
   const blockchainShowHandler = (name: string, isShown: boolean) => {
-    setState(state.hideBlockchains());
+    state.hideBlockchains();
     if(!isShown) {
-      setState(state.showBlockchain(name));
+      state.showBlockchain(name);
       setShownBlockchain(id);
     } else {
       setShownBlockchain(-1);
     }
+    rerender();
   }
 
   return (

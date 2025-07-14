@@ -10,27 +10,30 @@ export class Block {
   private receiver: string
   private amount: number
   private fee: number
-  private reward: number
-  private key: number | null
+  private reward: number | null
+  private key: string | null
+  private miner: string | null
 
   constructor(
-    id: number,
     prevHash: number,
     sender: string,
     receiver: string,
     amount: number,
     fee: number,
-    key: number | null
+    key: string | null
   ) {
-    this.id = id
     this.prevHash = prevHash
     this.sender = sender
     this.receiver = receiver
     this.amount = amount
     this.fee = fee
     this.key = key
+    this.id = -1;
     this.curHash = null
-    this.reward = Block.calculateReward(id);
+    this.reward = null
+    this.miner = null
+    // I think the reward should be calculated after being mined
+    // this.reward = Block.calculateReward(id);
   }
 
   public getId = () => this.id;
@@ -42,10 +45,17 @@ export class Block {
   public getFee = () => this.fee;
   public getReward = () => this.reward;
   public getKey = () => this.key;
+  public getMiner = () => this.miner;
+
+  public setId = (id: number) => this.id = id;
+  public setKey = (key: string | null) => this.key = key;
+  public setMiner = (miner: string) => this.miner = miner;
+  public setReward = (reward: number) => this.reward = reward;
+  public setCurHash = (curHash: number) => this.curHash = curHash;
 
   public static calculateCurHash = (
     block: Block,
-    key: number | null
+    key: string | null
   ) => {
     const result = hash(block, key);
     return result;
@@ -54,7 +64,10 @@ export class Block {
   public static verifyWork = (block: Block) => {
     const result = Block.calculateCurHash(block, block.getKey());
     if (result === -1) return false;
-    if (result <= 26) return true;
+    if (result <= 250) {
+      block.setCurHash(result);
+      return true
+    };
     return false;
   }
 

@@ -12,7 +12,7 @@ export class State{
     this.blocksToBeMined = [IdemBlock]
   }
 
-  private clone = () => {
+  public clone = () => {
     const stateClone = new State();
     stateClone.wallets = this.wallets;
     stateClone.blocksToBeMined = this.blocksToBeMined;
@@ -31,7 +31,6 @@ export class State{
         name,
         address,
         0,
-        [],
         false
       ))
     }
@@ -75,6 +74,15 @@ export class State{
     return verified
   }
 
+  public removeBlockToBeMined = (block: Block) => {
+    this.blocksToBeMined = this.blocksToBeMined.filter(b => 
+      b.getAmount() !== block.getAmount() &&
+      b.getCurHash() !== block.getCurHash() &&
+      b.getFee() !== block.getFee() &&
+      b.getMiner() !== block.getMiner()
+    )
+  }
+
   public hideBlockchains = () => {
     this.wallets.forEach(w => w.hideBlockchain());
     return this.clone();
@@ -84,5 +92,4 @@ export class State{
     this.wallets.forEach(w => w.getName() === name ? w.showBlockchain() : null);
     return this.clone();
   }
-
 }

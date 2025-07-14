@@ -11,7 +11,7 @@ import BlockList from "../blocks/block-list/BlockList"
 const WALLET_NAME_MAX_LENGTH = 10
 
 const Content: FC = () => {
-  const {state, setState} = useContext(StateContext);
+  const {state, rerender} = useContext(StateContext);
 
   const [shownBlockchain, setShownBlockchain] = useState<number>(-1);
   const [inputWallet, setInputWallet] = useState<string>("");
@@ -22,7 +22,8 @@ const Content: FC = () => {
   }
 
   const addWalletClickHandler = () => {
-    setState(state.addWallet(inputWallet));
+    state.addWallet(inputWallet);
+    rerender();
     setInputWallet("");
   }
 

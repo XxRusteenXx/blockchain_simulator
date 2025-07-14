@@ -1,17 +1,19 @@
 import { useState } from 'react';
 
-import Content from './components/content/Content';
-import Header from './components/ui/header/Header';
 import { StateContext } from './context/Context';
 import { State } from './classes/State';
+import Flow from './flow/Flow';
 
 function App() {
   const [globalState, setGlobalState] = useState(new State());
 
+  const rerender = () => {
+    setGlobalState(globalState.clone());
+  }
+
   return (
-    <StateContext.Provider value={{state: globalState, setState: setGlobalState}}>
-      <Header/>
-      <Content/>
+    <StateContext.Provider value={{state: globalState, rerender}}>
+      <Flow/>
     </StateContext.Provider>
   );
 }

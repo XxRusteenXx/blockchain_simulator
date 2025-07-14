@@ -1,16 +1,14 @@
 import { Block } from "../classes/Block"
 
-export const hash = (block: Block, key: number | null) => {
+export const hash = (block: Block, key: string | null) => {
   if (key === null) return -1;
   let h = 0;
-  h += block.getId();
   h += block.getAmount();
   h += block.getFee();
-  h += block.getReward();
   h += block.getPrevHash();
   h += convertStrToNumber(block.getSender());
   h += convertStrToNumber(block.getReceiver());
-  h += key;
+  h += convertStrToNumber(key);
 
   const hash = h % 256;
   return hash;

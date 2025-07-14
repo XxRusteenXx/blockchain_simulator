@@ -5,6 +5,8 @@
   align-items: flex-start;
   gap: 2rem;
   padding: 2rem;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .addWallet {
