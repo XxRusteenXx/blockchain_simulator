@@ -9,8 +9,12 @@ export class Loop {
 
     miningWallets.forEach(w => {
       if(!w.getAssignedBlock()) {
-        const random = Math.floor(Math.random() * transactions.length);
-        w.assignBlock(transactions[random]);
+        let randomTransaction = null;
+        if(transactions.length > 0) {
+          const random = Math.floor(Math.random() * transactions.length);
+          randomTransaction = transactions[random];
+        }
+        w.assignBlock(randomTransaction);
       }
     })
   }

@@ -80,11 +80,12 @@ export class State{
   }
 
   public removeBlockToBeMined = (block: Block) => {
+    console.log("Removing block to be mined:", block);
     this.blocksToBeMined = this.blocksToBeMined.filter(b => 
       b.getAmount() !== block.getAmount() ||
-      b.getCurHash() !== block.getCurHash() ||
       b.getFee() !== block.getFee() ||
-      b.getMiner() !== block.getMiner()
+      b.getSender() !== block.getSender() ||
+      b.getReceiver() !== block.getReceiver()
     )
   }
 

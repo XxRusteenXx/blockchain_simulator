@@ -50,10 +50,26 @@ export class Block {
 
   public setId = (id: number) => this.id = id;
   public setKey = (key: string | null) => this.key = key;
-  public setMiner = (miner: string) => this.miner = miner;
-  public setReward = (reward: number) => this.reward = reward;
+  public setMiner = (miner: string | null) => this.miner = miner;
+  public setReward = (reward: number | null) => this.reward = reward;
   public setPrevHash = (prevHash: number) => this.prevHash = prevHash;
   public setCurHash = (curHash: number) => this.curHash = curHash;
+
+  public clone = (): Block => {
+    const blockCopy = new Block(
+      this.prevHash,
+      this.sender,
+      this.receiver,
+      this.amount,
+      this.fee,
+      this.key
+    );
+    blockCopy.setId(this.id);
+    blockCopy.setCurHash(this.curHash);
+    blockCopy.setReward(this.reward);
+    blockCopy.setMiner(this.miner);
+    return blockCopy;
+  }
 
   public static calculateCurHash = (
     block: Block,

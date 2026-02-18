@@ -82,9 +82,16 @@ export class Wallet {
   }
 
   private checkAssignedBlockExistenceInBlockchain = () => {
-    if (this.assignedBlock) {
-      const assignedHash = this.assignedBlock.getCurHash();
-      const existsInAccepted = this.blockchain.some(b => b.getCurHash() === assignedHash);
+    const assigned = this.assignedBlock;
+    
+    if (assigned) {
+      const existsInAccepted = this.blockchain.some(b =>
+        b.getSender() === assigned.getSender() &&
+        b.getReceiver() === assigned.getReceiver() &&
+        b.getAmount() === assigned.getAmount() &&
+        b.getFee() === assigned.getFee()
+      );
+
       if (existsInAccepted) {
         this.assignedBlock = null;
       }
