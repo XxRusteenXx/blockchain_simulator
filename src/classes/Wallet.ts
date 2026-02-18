@@ -77,6 +77,18 @@ export class Wallet {
     const random = Math.floor(Math.random()*differentBlockchains.length);
     this.blockchain = differentBlockchains[random];
     this.receivedBlockchains = [];
+
+    this.checkAssignedBlockExistenceInBlockchain();
+  }
+
+  private checkAssignedBlockExistenceInBlockchain = () => {
+    if (this.assignedBlock) {
+      const assignedHash = this.assignedBlock.getCurHash();
+      const existsInAccepted = this.blockchain.some(b => b.getCurHash() === assignedHash);
+      if (existsInAccepted) {
+        this.assignedBlock = null;
+      }
+    }
   }
 
   public calculateCurrentBalance = () => {
