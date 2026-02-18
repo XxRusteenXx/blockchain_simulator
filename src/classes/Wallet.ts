@@ -67,7 +67,6 @@ export class Wallet {
     longestReceivedBlockchains.forEach(b => {
       if(b.length === 0) return;
       const h = b[maxLength - 1].getCurHash()!;
-      // console.log("cur hash is", h);
       if(!differentBlockchainIdentificators.includes(h)) {
         differentBlockchains.push(b);
         differentBlockchainIdentificators.push(h);
@@ -76,7 +75,6 @@ export class Wallet {
 
     if(differentBlockchains.length === 0) return;
     const random = Math.floor(Math.random()*differentBlockchains.length);
-    // console.log("random is", random)
     this.blockchain = differentBlockchains[random];
     this.receivedBlockchains = [];
   }
