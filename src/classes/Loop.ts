@@ -36,7 +36,7 @@ export class Loop {
     this.assignTransactions(w, transactions);
 
     for(let i = 0; i < w.length; i++) {
-      const assignedBlock = w[i].getAssignedBlock();
+      const assignedBlock = w[i].getAssignedBlock()?.clone();
       if(assignedBlock) {
         let generatedKey = createRandomString(KEY_LENGTH);
         assignedBlock.setKey(generatedKey);
